@@ -42,8 +42,9 @@ public class EmployeeService {
     }
 
     // -----------------------------------DELETE - delete employee------------------------------- 
-    public void deleteEmployee(Long id){
+    public  String deleteEmployee(Long id){
         employeeRepository.deleteById(id); 
+        return "Employee deleted successfully";
        }
 
     // ---------------------PUT - update employee information-----------------------------------

@@ -45,9 +45,11 @@ public class EmployeeController {
 
     //-------------------------------Deleting by ID-----------------------------------------
     @RequestMapping(value = "/employee/deleteEmployee/{id}",produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.DELETE)
-    public void deleteEmployee(@PathVariable(name = "id", required = true) Long id){
+    public String deleteEmployee(@PathVariable(name = "id", required = true) Long id){
         employeeService.deleteEmployee(id);
+       return "Employee deleted successfully";
     }
+
 
     //-------------------------------Updating-------------------------------------- 
     @RequestMapping(value = "/employee/employeeUpdate/{id}",produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.PUT)
