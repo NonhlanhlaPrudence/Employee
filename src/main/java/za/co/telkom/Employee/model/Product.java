@@ -30,10 +30,13 @@ public class Product {
 	private String date;
 	
 	
-//Relationship between Product and Employee
-//Many to One Relationship
+   //Relationship between Product and Employee
+   //Many to One Relationship
 	@ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
-	@JoinTable(name="Employee_Products", joinColumns={
+	//define new table for product and employee
+	@JoinTable(name="Employee_Products", 
+	//define the names of the columns starting with product(pid) and employee(id)
+	joinColumns={
     @JoinColumn(name="pid")},inverseJoinColumns={@JoinColumn(name="id")})
 	private Employee employee;
 	
