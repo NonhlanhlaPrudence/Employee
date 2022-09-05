@@ -1,10 +1,12 @@
 package za.co.telkom.Employee.service;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import za.co.telkom.Employee.exceptions.ResourceNotFoundException;
 import za.co.telkom.Employee.model.Employee;
 import za.co.telkom.Employee.repository.EmployeeRepository;
 
@@ -14,16 +16,6 @@ public class EmployeeService {
     @Autowired
     private EmployeeRepository employeeRepository;
 
-    // POST - create employee
-    // public Employee createEmployee(String name, String surname, String salaryRef) {
-    //     Employee employee = new Employee();
-    //     employee.setName(name);
-    //     employee.setSurname(surname);
-    //     employee.setSalaryRef(salaryRef);
-
-    //     return employee;
-    // }
-
     public Employee createEmployee(Employee employee) {
     return employeeRepository.save(employee);
     }
@@ -31,12 +23,18 @@ public class EmployeeService {
     // -------------------------------GET - get employees--------------------------------------- 
     public List<Employee> getEmployees(){
         List<Employee> employees = employeeRepository.findAll();
+
+        if (Objects.isNull(employees) || employees.isEmpty()) {
+            throw new ResourceNotFoundException("Employees not found");
+        }
+
         return employees;
    }
 
     // ---------------------------GET BY ID - get employee by id/salaryRef----------------------
     public Employee getEmployeeId(Long id){
-        Employee employee = employeeRepository.findById(id).get();
+        Employee employee = employeeRepository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException(String.format("Employee not found for ID : %s", id)));
 
         return employee;
     }

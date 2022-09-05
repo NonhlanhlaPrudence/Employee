@@ -1,9 +1,9 @@
 package za.co.telkom.Employee.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,14 +33,17 @@ public class EmployeeController {
 
     // ----------------------------Get all employees---------------------------------
     @GetMapping(value = "/employee/getEmployees",produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Employee> getEmployees(){
-        return employeeService.getEmployees();
+    public  ResponseEntity<Object> getEmployees(){
+
+        return new ResponseEntity<>(employeeService.getEmployees(), HttpStatus.OK);
+       
     }
 
     //-----------------------------Get by Id-----------------------------------------
     @RequestMapping(value = "/employee/getEmployeeId/{id}",produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
-    public Employee getEmployeeId(@PathVariable(name = "id", required = true) Long id){
-    return employeeService.getEmployeeId(id);   
+    public ResponseEntity<Object> getEmployeeId(@PathVariable(name = "id", required = true) Long id){
+
+        return new ResponseEntity<>(employeeService.getEmployeeId(id), HttpStatus.OK);
     }
 
     //-------------------------------Deleting by ID-----------------------------------------

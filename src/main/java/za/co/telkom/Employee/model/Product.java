@@ -25,6 +25,12 @@ public class Product {
 	@Column(nullable =false )
 	
 	
+	public Long getId() {
+		return pid;
+	}
+	public void setId(Long pid) {
+		this.pid = pid;
+	}
 	public String getProductName() {
 		return productName;
 	}
@@ -49,12 +55,7 @@ public class Product {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	public Long getId() {
-		return pid;
-	}
-	public void setId(Long pid) {
-		this.pid = pid;
-	}
+
 	
 
 }
