@@ -16,7 +16,7 @@ public class Employee {
     private Long id;
 
 
-    @Column(nullable =false , name = "Employee")
+    @Column(nullable =false , name = "Employee Name")
     private String name;
     @Column(nullable =false )
     private String surname;
