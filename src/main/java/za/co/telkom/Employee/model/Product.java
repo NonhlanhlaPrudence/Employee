@@ -16,7 +16,7 @@ public class Product {
 	private Long pid;
 	
 	private String productName;
-	@Column(nullable = false, name = "Product")
+	@Column(nullable = false)
 	private String quantity;
 	@Column(nullable =false )
 	private String price;
@@ -24,6 +24,16 @@ public class Product {
 	private String date;
 	@Column(nullable =false )
 	
+
+	   //Relationship between Product and Employee
+   //Many to One Relationship
+   @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+   //define new table for product and employee
+   @JoinTable(name="Employee_Products", 
+   //define the names of the columns starting with product(pid) and employee(id)
+   joinColumns={
+   @JoinColumn(name="pid")},inverseJoinColumns={@JoinColumn(name="id")})
+   private Employee employee;
 	
 	public Long getId() {
 		return pid;
@@ -56,6 +66,13 @@ public class Product {
 		this.date = date;
 	}
 
+	
+	public Employee getEmployee() {
+		return employee;
+	}
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
 	
 
 }
