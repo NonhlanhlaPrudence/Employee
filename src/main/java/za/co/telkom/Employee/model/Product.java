@@ -1,11 +1,18 @@
 package za.co.telkom.Employee.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import za.co.telkom.Employee.model.Employee;
 
 @Entity
 @Table(name = "Product")
@@ -18,14 +25,12 @@ public class Product {
 	private String productName;
 	@Column(nullable = false)
 	private String quantity;
-	@Column(nullable =false )
+	@Column(nullable =false)
 	private String price;
-	@Column(nullable =false )
-	private String date;
-	@Column(nullable =false )
-	
+	@Column(nullable =false)
+	private String date;	
 
-	   //Relationship between Product and Employee
+    //Relationship between Product and Employee
    //Many to One Relationship
    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
    //define new table for product and employee
