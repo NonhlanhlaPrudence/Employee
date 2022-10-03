@@ -16,6 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 import za.co.telkom.Employee.model.Employee;
 import za.co.telkom.Employee.service.EmployeeService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
 public class EmployeeController {
 
@@ -33,9 +38,27 @@ public class EmployeeController {
     // ----------------------------Get all
     // employees---------------------------------
     @GetMapping(value = "/employee/getEmployees", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object>  getEmployees() {
+    @ApiOperation(value = "This operation retrieves all individuals.")
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Successfully retrieved individuals", response = Employee.class, responseContainer = "list"),
+			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+			@ApiResponse(code = 404, message = "Employees not found") })
+    public  @ResponseBody ResponseEntity<Object>  getEmployees() {
 
-        return new ResponseEntity<>(employeeService.getEmployees(), HttpStatus.OK);
+        // try {
+			return new ResponseEntity<>(employeeService.getEmployees(), HttpStatus.OK);
+		// } catch (ApiException e) {
+		// 	return new ResponseEntity<>(e.getMessage(), HttpStatus.valueOf(e.getCode()));
+		// }
+
+        // if (employeeService.getEmployees().isEmpty() || employeeService.getEmployees() == null){
+
+        //         return new ResponseEntity<>("Employees not found", HttpStatus.OK);
+            
+        //     }
+  
+        //     return new ResponseEntity<>(employeeService.getEmployees(), HttpStatus.OK);
 
     }
 

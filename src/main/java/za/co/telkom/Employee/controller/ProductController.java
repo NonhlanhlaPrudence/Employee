@@ -21,25 +21,25 @@ public class ProductController {
 
 	private ProductService productService;
 	//-----------------------------Creating stock-------------------------------------------
-	@PostMapping(value = "/employee/createStock/",produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/product/createProduct",produces = MediaType.APPLICATION_JSON_VALUE)
 	public Product createStock(@RequestBody Product product) {
 		return productService.createStock(product);
 	}
 
 	//-------------------------------Getting stock---------------------------------------  
- 	@GetMapping(value ="/employee/getStock/",produces = MediaType.APPLICATION_JSON_VALUE)
+ 	@GetMapping(value ="/product/getProducts",produces = MediaType.APPLICATION_JSON_VALUE)
  	public List<Product> getStock(){
  		return productService.getStock();	
    }
 
     //-----------------------------Get by Id-----------------------------------------
-    @RequestMapping(value = "/employee/getStockById/{pid}",produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+    @RequestMapping(value = "/product/getProductById/{pid}",produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
     public Product getStockById(@PathVariable(name = "pid", required = true) Long pid){
     return productService.getStockById(pid);   
     }
 
 	 //-------------------------------Deleting by ID-----------------------------------------
-	 @RequestMapping(value = "/employee/deleteStock/{pid}",produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.DELETE)
+	 @RequestMapping(value = "/product/deleteProduct/{pid}",produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.DELETE)
 	 public void deleteStock(@PathVariable(name = "pid", required = true) Long pid){
 		 productService.deleteStock(pid);
 	 }

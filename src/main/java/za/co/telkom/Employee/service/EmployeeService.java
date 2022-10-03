@@ -33,8 +33,8 @@ public class EmployeeService {
 
     // ---------------------------GET BY ID - get employee by id/salaryRef----------------------
     public Employee getEmployeeId(Long id){
-        Employee employee = employeeRepository.findById(id)
-        .orElseThrow(() -> new ResourceNotFoundException(String.format("Employee not found for ID : %s", id)));
+        Employee employee = employeeRepository.findById(id).get();
+        //.orElseThrow(() -> new ResourceNotFoundException(String.format("Employee not found for ID : %s", id)));
 
         return employee;
     }
