@@ -34,6 +34,9 @@ public class Employee {
 
     @Enumerated(EnumType.STRING)
     private BusinessUnit businessUnit;
+
+    @Column(nullable =false )
+    private String role;
     
     public Long getId() {
         return id;
@@ -70,6 +73,12 @@ public class Employee {
     }
     public void setBusinessUnit(BusinessUnit businessUnit) {
         this.businessUnit = businessUnit;
+    }
+    public String getRole() {
+        return role;
+    }
+    public void setRole(String role) {
+        this.role = role;
     }
 
     
